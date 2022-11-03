@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="main_window">
+    <file>fondo.png</file>
+    <file>grid.png</file>
+  </qresource>
+</RCC>
