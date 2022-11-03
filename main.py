@@ -1,18 +1,154 @@
 
+import sys
+import random
+import colorsys as cs #importamos la libreria colorsys
+
+from PyQt5 import uic, QtGui
+from PyQt5.QtWidgets import QMainWindow, QApplication
+
+
+class Juego(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi("resource/game.ui", self)
+        self.turno:int = 1      # 1 = X, 0 = O
+        self.matriz_len:int = 3
+        self.gano = False
+        self.matriz = [[-1,-1,-1], [-1,-1,-1], [-1,-1,-1]]
+
+        self.button_00.clicked.connect(lambda:self.botones_jugador("00"))
+        self.button_01.clicked.connect(lambda:self.botones_jugador("01"))
+        self.button_02.clicked.connect(lambda:self.botones_jugador("02"))
+        self.button_10.clicked.connect(lambda:self.botones_jugador("10"))
+        self.button_11.clicked.connect(lambda:self.botones_jugador("11"))
+        self.button_12.clicked.connect(lambda:self.botones_jugador("12"))
+        self.button_20.clicked.connect(lambda:self.botones_jugador("20"))
+        self.button_21.clicked.connect(lambda:self.botones_jugador("21"))
+        self.button_22.clicked.connect(lambda:self.botones_jugador("22"))
+
+    def set_turno(self, turno:int):
+       self.turno = turno
+       
+    def print_matriz(self):
+        for i in range(self.matriz_len):
+            for j in range(self.matriz_len):
+                print(self.matriz[i][j], end = ", ")
+            print()
+        print()
+
+    def gana(self) -> str:
+        ganador:str = "-1"
+        if (self.matriz[0][0] == self.matriz[0][1] == self.matriz[0][2] and
+            self.matriz[0][0] != -1):
+            ganador = self.matriz[0][0]
+            self.gano = True
+            return ganador
+        if (self.matriz[1][0] == self.matriz[1][1] == self.matriz[1][2] and
+            self.matriz[1][0] != -1):
+            ganador = self.matriz[1][0]
+            self.gano = True
+            return ganador
+        if (self.matriz[2][0] == self.matriz[2][1] == self.matriz[2][2] and
+            self.matriz[2][0] != -1):
+            ganador = self.matriz[2][0]
+            self.gano = True
+            return ganador
+        if (self.matriz[0][0] == self.matriz[1][0] == self.matriz[2][0] and
+            self.matriz[0][0] != -1):
+            ganador = self.matriz[0][0]
+            self.gano = True
+            return ganador
+        if (self.matriz[0][1] == self.matriz[1][1] == self.matriz[2][1] and
+            self.matriz[0][1] != -1):
+            ganador = self.matriz[0][1]
+            self.gano = True
+            return ganador
+        if (self.matriz[0][2] == self.matriz[1][2] == self.matriz[2][2] and
+            self.matriz[0][2] != -1):
+            ganador = self.matriz[0][2]
+            self.gano = True
+            return ganador
+        if (self.matriz[0][0] == self.matriz[1][1] == self.matriz[2][2] and
+            self.matriz[0][0] != -1):
+            ganador = self.matriz[0][0]
+            self.gano = True
+            return ganador
+        if (self.matriz[0][2] == self.matriz[1][1] == self.matriz[2][0] and
+            self.matriz[0][2] != -1):
+            ganador = self.matriz[0][2]
+            self.gano = True
+            return ganador
+        return ganador
+
+    def botones_jugador(self, valor:str):
+        if self.gana() != "-1":
+            if (self.gana() == "x"):
+                self.mensaje.setText("El jugador ganó")
+            else:
+                self.mensaje.setText("El CPU ganó")
+            return
+
+        if (valor == "AI"): pass
+        elif self.matriz[int(valor[0])][int(valor[1])] == "x" or self.matriz[int(valor[0])][int(valor[1])] == "o": return
+
+        turno_icon = QtGui.QIcon("resource/x.png")
+        turno_letra = "x"
+        if self.turno % 2 == 0:
+            turno_icon = QtGui.QIcon("resource/o.png")
+            turno_letra = "o"
+            vacio:bool = False # Easy level starts, fix AI turn, delete this to PVP.
+            i:int = -1
+            j:int = -1
+            while not vacio:
+                i = random.randint(0, 2)
+                j = random.randint(0, 2)
+                if self.matriz[i][j] == -1:
+                    vacio = True
+            valor = str(i) + str(j)
+            print(f'Estoy jugando en una pos. random: {i},{j}')
+
+        if (valor == "00"): self.button_00.setIcon(turno_icon)
+        if (valor == "01"): self.button_01.setIcon(turno_icon)
+        if (valor == "02"): self.button_02.setIcon(turno_icon)
+        if (valor == "10"): self.button_10.setIcon(turno_icon)
+        if (valor == "11"): self.button_11.setIcon(turno_icon)
+        if (valor == "12"): self.button_12.setIcon(turno_icon)
+        if (valor == "20"): self.button_20.setIcon(turno_icon)
+        if (valor == "21"): self.button_21.setIcon(turno_icon)
+        if (valor == "22"): self.button_22.setIcon(turno_icon)
+
+        if self.turno == 9:
+            for i in range(self.matriz_len):
+                for j in range(self.matriz_len):
+                    if self.matriz[i][j] == -1: self.matriz[i][j] = "x"
+            self.print_matriz()
+            if (self.gana() == "x"):
+                self.mensaje.setText("El jugador ganó")
+            elif (self.gana() == "o"):
+                self.mensaje.setText("El CPU ganó")
+            else :self.mensaje.setText("Empate")
+            return
+        self.matriz[int(valor[0])][int(valor[1])] = turno_letra
+        self.print_matriz()
+        self.turno += 1
+        if self.turno % 2 == 0: self.botones_jugador("AI")
+        if self.gana() != "-1":
+            if(self.gana() == "x"):
+                self.mensaje.setText("El jugador ganó")
+            else:
+                self.mensaje.setText("El CPU ganó")
+            return
 
 
 
 
 
+if __name__ == "__main__":
 
-
-
-
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
-
-
-
-
-
-
+    app = QApplication(sys.argv)
+    apli = Juego()
+    apli.show()
+    apli.setWindowTitle("Tic-tac-toe")
+    apli.setWindowIcon(QtGui.QIcon("resource/tic-tac-toe.png"))
+    apli.set_turno(1)
+    sys.exit(app.exec_())

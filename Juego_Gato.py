@@ -1,3 +1,4 @@
+"""
 import sys
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
@@ -15,14 +16,15 @@ class Juego_Gato(QMainWindow):
         self.label_01.setPixmap(QPixmap("resource/X.png"))
         self.label_02.setPixmap(QPixmap("resource/O.png"))
         self.label_12.setPixmap(QPixmap("resource/O.png"))
-    """
+   
     un textfild que hagarre el numero de la posicion, un lbl en blanco al que se le setea texto y jugadores
     Ponerle numero a las casillas, lbl abajo que muestre los resultados del juego
-    """
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     GUI = Juego_Gato()
     GUI.show()
 
-    sys.exit(app.exec_())
+    sys.exit(app.exec_())""""""
+    """
