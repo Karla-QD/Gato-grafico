@@ -3,7 +3,7 @@ import sys
 import random
 from PyQt5 import uic, QtGui
 from PyQt5.QtWidgets import QMainWindow, QApplication
-class principal(QMainWindow):
+class Principal(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("resource/principal.ui", self)
@@ -184,7 +184,7 @@ class Juego(QMainWindow):
         self.modo = self.dificultad.currentIndex()
     def set_turno(self, turno:int):
        self.turno = turno
-       
+
     def print_matriz(self):
         for i in range(self.matriz_len):
             for j in range(self.matriz_len):
@@ -302,13 +302,113 @@ class Juego(QMainWindow):
 
                 return
         if self.modo == 1:
-            #modo intermedio
-            return;
-        if self.modo == 2:
-            # Modo dificil
-            return;
+            if self.gana() != "-1":
+                if (self.gana() == "x"):
+                    self.mensaje.setText("El jugador ganó")
 
-    def reset(self):
+                else:
+                    self.mensaje.setText("El CPU ganó")
+                return
+
+            if (valor == "AI"):
+                pass
+            elif self.matriz[int(valor[0])][int(valor[1])] == "x" or self.matriz[int(valor[0])][int(valor[1])] == "o":
+                return
+
+            turno_icon = QtGui.QIcon("resource/x.png")
+            turno_letra = "x"
+            if self.turno % 2 == 0:
+                turno_icon = QtGui.QIcon("resource/o.png")
+                turno_letra = "o"
+                vacio: bool = False
+                sigue: bool = False
+                i: int = -1
+                j: int = -1
+                if ((self.matriz[0][0] == self.matriz[0][1] == "x" and self.matriz[0][2] == -1) or (self.matriz[2][0] ==
+                     self.matriz[1][1] == "x" and self.matriz[0][2] == -1) or (self.matriz[2][2] == self.matriz[1][2] == "x" and self.matriz[0][2] == -1)):
+                       valor = str(0) + str(2)
+                       vacio = True
+                if ((self.matriz[1][0] == self.matriz[1][1] == "x" and self.matriz[1][2] == -1) or (self.matriz[0][2] == self.matriz[2][2] == "x"
+                      and self.matriz[1][2] == -1)):
+                         valor = str(1) + str(2)
+                         vacio = True
+                if ((self.matriz[0][0] == self.matriz[1][1] == "x" and self.matriz[2][2] == -1) or (self.matriz[2][0] == self.matriz[2][1] == "x"
+                      and self.matriz[2][2] == -1) or (self.matriz[0][2] == self.matriz[1][2] == "x" and self.matriz[2][2] == -1)):
+                         valor = str(2) + str(2)
+                         vacio = True
+                if ((self.matriz[0][0] == self.matriz[0][2] == "x"and self.matriz[0][1] == -1) or (self.matriz[1][1] == self.matriz[2][1] == "x"
+                      and self.matriz[0][1] == -1)):
+                        valor = str(0) + str(1)
+                        vacio = True
+                if ((self.matriz[1][0] == self.matriz[1][2] == "x" and self.matriz[1][1] == -1)or (self.matriz[0][0] == self.matriz[2][2] == "x" and self.matriz[1][1] == -1)
+                      or (self.matriz[0][1] == self.matriz[2][1] == "x" and self.matriz[1][1] == -1)):
+                       valor = str(1) + str(1)
+                       vacio = True
+                if ((self.matriz[0][1] == self.matriz[1][1] == "x" and self.matriz[2][1] == -1) or (self.matriz[2][0] == self.matriz[2][2] == "x"
+                        and self.matriz[2][1] == -1)):
+                        valor = str(2) + str(1)
+                        vacio = True
+                if ((self.matriz[0][1] == self.matriz[0][2] == "x" and self.matriz[0][0] == -1) or (self.matriz[1][1] == self.matriz[2][2] == "x" and self.matriz[0][0] == -1)
+                        or (self.matriz[1][0] == self.matriz[2][0] == "x" and self.matriz[0][0] == -1)):
+                        valor = str(0) + str(0)
+                        vacio = True
+                if ((self.matriz[0][0] == self.matriz[2][0] == "x" and self.matriz[1][0] == -1) or (self.matriz[1][1] == self.matriz[1][2] == "x"
+                        and self.matriz[1][0] == -1)):
+                        valor = str(1) + str(0)
+                        vacio = True
+                if ((self.matriz[1][1] == self.matriz[0][2] == "x" and self.matriz[2][0] == -1) or (self.matriz[2][1] == self.matriz[2][2] == "x" and self.matriz[2][0] == -1)
+                         or (self.matriz[0][0] == self.matriz[1][0] == "x" and self.matriz[2][0] == -1)):
+                        valor = str(2) + str(0)
+                        vacio = True
+                if(vacio == False):
+                    while not sigue:
+                         i = random.randint(0, 2)
+                         j = random.randint(0, 2)
+                         if self.matriz[i][j] == -1:
+                           valor = str(i) + str(j)
+                           sigue = True
+
+            if (valor == "00"): self.button_00.setIcon(turno_icon)
+            if (valor == "01"): self.button_01.setIcon(turno_icon)
+            if (valor == "02"): self.button_02.setIcon(turno_icon)
+            if (valor == "10"): self.button_10.setIcon(turno_icon)
+            if (valor == "11"): self.button_11.setIcon(turno_icon)
+            if (valor == "12"): self.button_12.setIcon(turno_icon)
+            if (valor == "20"): self.button_20.setIcon(turno_icon)
+            if (valor == "21"): self.button_21.setIcon(turno_icon)
+            if (valor == "22"): self.button_22.setIcon(turno_icon)
+
+            if self.turno == 9:
+                for i in range(self.matriz_len):
+                    for j in range(self.matriz_len):
+                        if self.matriz[i][j] == -1: self.matriz[i][j] = "x"
+                self.print_matriz()
+                if (self.gana() == "x"):
+                    self.mensaje.setText("El jugador ganó")
+
+                elif (self.gana() == "o"):
+                    self.mensaje.setText("El CPU ganó")
+
+                else:
+                    self.mensaje.setText("Empate")
+                return
+            self.matriz[int(valor[0])][int(valor[1])] = turno_letra
+            self.print_matriz()
+            self.turno += 1
+            if self.turno % 2 == 0: self.botones_jugador("AI")
+            if self.gana() != "-1":
+                if (self.gana() == "x"):
+                    self.mensaje.setText("El jugador ganó")
+
+                else:
+                    self.mensaje.setText("El CPU ganó")
+
+                return
+
+        if self.modo == 2:
+          return
+
+    def resetear(self):
         self.matriz = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]
         self.turno = 1
         self.gano = False
@@ -326,7 +426,7 @@ class Juego(QMainWindow):
 if __name__ == "__main__":
 
     app = QApplication(sys.argv)
-    apli = principal()
+    apli = Principal()
     apli.show()
     apli.setWindowTitle("Tic-tac-toe")
     apli.setWindowIcon(QtGui.QIcon("resource/tic-tac-toe.png"))
