@@ -13,7 +13,6 @@ class principal(QMainWindow):
     def cerrar(self):
         sys.exit()
     def j_vs_j(self):
-
         apli = Jugador_Jugador()
         apli.show()
         apli.setWindowTitle("Tic-tac-toe")
@@ -325,7 +324,6 @@ class Juego(QMainWindow):
         self.mensaje.setText("")
 
 if __name__ == "__main__":
-
 
     app = QApplication(sys.argv)
     apli = principal()
