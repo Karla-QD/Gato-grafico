@@ -1,14 +1,39 @@
 
 import sys
 import random
-import colorsys as cs #importamos la libreria colorsys
-
 from PyQt5 import uic, QtGui
 from PyQt5.QtWidgets import QMainWindow, QApplication
+class principal(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi("resource/principal.ui", self)
+        self.jvsjButton.clicked.connect(self.j_vs_j)
+        self.jcpu.clicked.connect(self.j_vs_cpu)
+        self.finalizar.clicked.connect(self.cerrar)
+    def cerrar(self):
+        sys.exit()
+    def j_vs_j(self):
+
+        apli = Jugador_Jugador()
+        apli.show()
+        apli.setWindowTitle("Tic-tac-toe")
+        apli.setWindowIcon(QtGui.QIcon("resource/tic-tac-toe.png"))
+        apli.set_turno(1)
+
+
+    def j_vs_cpu(self):
+
+        apli = Juego()
+        apli.show()
+        apli.setWindowTitle("Tic-tac-toe")
+        apli.setWindowIcon(QtGui.QIcon("resource/tic-tac-toe.png"))
+        apli.set_turno(1)
+
+
 class Jugador_Jugador(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("resource/game.ui", self)
+        uic.loadUi("resource/game_j_vs_j.ui", self)
         self.turno: int = 1  # 1 = X, 0 = O
         self.matriz_len: int = 3
         self.gano = False
@@ -23,6 +48,10 @@ class Jugador_Jugador(QMainWindow):
         self.button_20.clicked.connect(lambda: self.botones_jugador("20"))
         self.button_21.clicked.connect(lambda: self.botones_jugador("21"))
         self.button_22.clicked.connect(lambda: self.botones_jugador("22"))
+        self.regresarJ_J.clicked.connect(self.cerrar)
+
+    def cerrar(self):
+        self.close()
 
     def set_turno(self, turno: int):
         self.turno = turno
@@ -148,6 +177,9 @@ class Juego(QMainWindow):
         self.button_21.clicked.connect(lambda:self.botones_jugador("21"))
         self.button_22.clicked.connect(lambda:self.botones_jugador("22"))
         self.dificultad.currentIndexChanged.connect(self.set_modo)
+        self.regresarJC.clicked.connect(self.cerrar)
+    def cerrar(self):
+        self.close()
 
     def set_modo(self):
         self.modo = self.dificultad.currentIndex()
@@ -268,6 +300,7 @@ class Juego(QMainWindow):
                 else:
                     self.mensaje.setText("El CPU ganó")
 
+
                 return
         if self.modo == 1:
             #modo intermedio
@@ -293,10 +326,11 @@ class Juego(QMainWindow):
 
 if __name__ == "__main__":
 
+
     app = QApplication(sys.argv)
-    apli = Juego()
+    apli = principal()
     apli.show()
     apli.setWindowTitle("Tic-tac-toe")
     apli.setWindowIcon(QtGui.QIcon("resource/tic-tac-toe.png"))
-    apli.set_turno(1)
+   # apli.set_turno(1)
     sys.exit(app.exec_())

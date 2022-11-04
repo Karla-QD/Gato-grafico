@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>641</width>
+    <width>640</width>
     <height>480</height>
    </rect>
   </property>
@@ -407,9 +407,9 @@
    <widget class="QLabel" name="background">
     <property name="geometry">
      <rect>
-      <x>-10</x>
+      <x>0</x>
       <y>0</y>
-      <width>651</width>
+      <width>640</width>
       <height>480</height>
      </rect>
     </property>
@@ -434,9 +434,9 @@
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>0</y>
+      <y>6</y>
       <width>231</width>
-      <height>31</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="font">
@@ -447,17 +447,14 @@
      </font>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Seleccione la casilla&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::RichText</enum>
+     <string>Seleccione la casilla</string>
     </property>
    </widget>
    <widget class="QLabel" name="mensaje">
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>390</y>
+      <y>380</y>
       <width>171</width>
       <height>20</height>
      </rect>
@@ -485,14 +482,14 @@
    <widget class="QLabel" name="jugador1">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>60</y>
-      <width>91</width>
-      <height>21</height>
+      <x>10</x>
+      <y>40</y>
+      <width>101</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Ficha Jugador&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Ficha Jugador 1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="textFormat">
      <enum>Qt::RichText</enum>
@@ -501,7 +498,7 @@
    <widget class="QLabel" name="x_image">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>30</x>
       <y>80</y>
       <width>64</width>
       <height>64</height>
@@ -529,14 +526,14 @@
    <widget class="QLabel" name="jugador2">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>6</x>
       <y>170</y>
-      <width>81</width>
+      <width>121</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Ficha CPU&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Ficha Jugador 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="textFormat">
      <enum>Qt::RichText</enum>
@@ -545,7 +542,7 @@
    <widget class="QLabel" name="o_image">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>210</y>
       <width>81</width>
       <height>71</height>
@@ -564,68 +561,27 @@
      <pixmap>o.png</pixmap>
     </property>
    </widget>
-   <widget class="QComboBox" name="dificultad">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>90</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Facil</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Medio</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Dificil</string>
-     </property>
-    </item>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>70</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; font-weight:600;&quot;&gt;Elegir dificultad&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::RichText</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
+      <x>260</x>
       <y>30</y>
       <width>111</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Inicia Jugador&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt; Inicia: Jugador 1 &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="textFormat">
      <enum>Qt::RichText</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="regresarJC">
+   <widget class="QPushButton" name="regresarJ_J">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>430</y>
+      <x>270</x>
+      <y>410</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -642,12 +598,26 @@
    <zorder>x_image</zorder>
    <zorder>jugador2</zorder>
    <zorder>o_image</zorder>
-   <zorder>dificultad</zorder>
    <zorder>label</zorder>
-   <zorder>label_2</zorder>
-   <zorder>regresarJC</zorder>
+   <zorder>regresarJ_J</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>640</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuGame">
+    <property name="title">
+     <string>Game</string>
+    </property>
+   </widget>
+   <addaction name="menuGame"/>
+  </widget>
  </widget>
  <resources/>
  <connections/>
