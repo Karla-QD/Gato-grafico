@@ -324,6 +324,10 @@ class Juego(QMainWindow):
                 sigue: bool = False
                 i: int = -1
                 j: int = -1
+                if ((self.matriz[1][1] == self.matriz[0][0] == "o" and self.matriz[2][2] == -1) or (self.matriz[0][2] == self.matriz[1][2] == "o" and self.matriz[2][2] == -1)
+                     or (self.matriz[2][0] == self.matriz[2][1] == "o" and self.matriz[2][2] == -1)):
+                        valor = str(2) + str(2)
+                        vacio = True
                 if ((self.matriz[0][0] == self.matriz[0][1] == "x" and self.matriz[0][2] == -1) or (self.matriz[2][0] ==
                      self.matriz[1][1] == "x" and self.matriz[0][2] == -1) or (self.matriz[2][2] == self.matriz[1][2] == "x" and self.matriz[0][2] == -1)):
                        valor = str(0) + str(2)
@@ -355,6 +359,10 @@ class Juego(QMainWindow):
                 if ((self.matriz[0][0] == self.matriz[2][0] == "x" and self.matriz[1][0] == -1) or (self.matriz[1][1] == self.matriz[1][2] == "x"
                         and self.matriz[1][0] == -1)):
                         valor = str(1) + str(0)
+                        vacio = True
+                if ((self.matriz[1][1] == self.matriz[0][2] == "x" and self.matriz[2][0] == -1) or (self.matriz[2][1] == self.matriz[2][2] == "x" and self.matriz[2][0] == -1)
+                         or (self.matriz[0][0] == self.matriz[1][0] == "x" and self.matriz[2][0] == -1)):
+                        valor = str(2) + str(0)
                         vacio = True
                 if ((self.matriz[1][1] == self.matriz[0][2] == "x" and self.matriz[2][0] == -1) or (self.matriz[2][1] == self.matriz[2][2] == "x" and self.matriz[2][0] == -1)
                          or (self.matriz[0][0] == self.matriz[1][0] == "x" and self.matriz[2][0] == -1)):
