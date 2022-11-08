@@ -4,12 +4,14 @@ from PyQt5.QtWidgets import QMainWindow, QApplication
 class Jugador_Jugador(QMainWindow):
     def __init__(self):
         super().__init__()
+        # Cargar la interfaz gráfica
         uic.loadUi("resource/game_j_vs_j.ui", self)
         self.turno: int = 1  # 1 = X, 0 = O
         self.matriz_len: int = 3
         self.gano = False
         self.matriz = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]
 
+        # Conectar los botones con sus respectivos valores
         self.button_00.clicked.connect(lambda: self.botones_jugador("00"))
         self.button_01.clicked.connect(lambda: self.botones_jugador("01"))
         self.button_02.clicked.connect(lambda: self.botones_jugador("02"))
@@ -19,11 +21,16 @@ class Jugador_Jugador(QMainWindow):
         self.button_20.clicked.connect(lambda: self.botones_jugador("20"))
         self.button_21.clicked.connect(lambda: self.botones_jugador("21"))
         self.button_22.clicked.connect(lambda: self.botones_jugador("22"))
+        # Conectar los botones de reset y cerrar
         self.regresarJ_J.clicked.connect(self.cerrar)
         #si se reinicia el juego, se reinicia la matriz y se vuelve a poner el turno en 1 para que empiece el jugador 1
         self.reinicioButton.clicked.connect(self.resetear)
+
     def cerrar(self):
         self.close()
+
+
+    #reinicia el juego
     def resetear(self):
         self.matriz = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]
         self.turno = 1
@@ -38,6 +45,7 @@ class Jugador_Jugador(QMainWindow):
         self.button_21.setIcon(QtGui.QIcon())
         self.button_22.setIcon(QtGui.QIcon())
         self.mensaje.setText("")
+
     def set_turno(self, turno: int):
         self.turno = turno
 
@@ -48,8 +56,10 @@ class Jugador_Jugador(QMainWindow):
             print()
         print()
 
+    # funcion que imprime si un jugador gano o no
     def gana(self) -> str:
         ganador: str = "-1"
+        # verificamos si hay un ganador en las filas
         if (self.matriz[0][0] == self.matriz[0][1] == self.matriz[0][2] and
                 self.matriz[0][0] != -1):
             ganador = self.matriz[0][0]
@@ -93,6 +103,7 @@ class Jugador_Jugador(QMainWindow):
         return ganador
 
     def botones_jugador(self, valor: str):
+        #verificamos si el juego ya termino y si hay un ganador
         if self.gana() != "-1":
             if (self.gana() == "x"):
                 self.mensaje.setText("El jugador 1 ganó")
@@ -102,6 +113,7 @@ class Jugador_Jugador(QMainWindow):
 
         if self.matriz[int(valor[0])][int(valor[1])] == "x" or self.matriz[int(valor[0])][int(valor[1])] == "o": return
 
+        #verificamos si el turno es del jugador 1 o 2, y dependiendo de eso, se pone la imagen del jugador en el boton
         if self.turno % 2 != 0:
             turno_icon = QtGui.QIcon("resource/x.png")
             turno_letra = "x"
@@ -109,6 +121,7 @@ class Jugador_Jugador(QMainWindow):
             turno_icon = QtGui.QIcon("resource/o.png")
             turno_letra = "o"
 
+        #
         if (valor == "00"): self.button_00.setIcon(turno_icon)
         if (valor == "01"): self.button_01.setIcon(turno_icon)
         if (valor == "02"): self.button_02.setIcon(turno_icon)
