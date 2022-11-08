@@ -5,4 +5,4 @@ Segundo proyecto de estructuras de datos, ll ciclo 2022.
 
 ### Karla Verónica Quirós Delgado_ 604650870
 
-### Alisson Steller Alfaro
+### Alisson Steller Alfaro_604820039
