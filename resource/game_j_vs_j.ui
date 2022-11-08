@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>480</height>
+    <width>655</width>
+    <height>521</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -409,7 +409,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>640</width>
+      <width>661</width>
       <height>480</height>
      </rect>
     </property>
@@ -580,14 +580,27 @@
    <widget class="QPushButton" name="regresarJ_J">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>160</x>
       <y>410</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>REGRESAR</string>
+     <string>Regresar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reinicioButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>410</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Reiniciar</string>
     </property>
    </widget>
    <zorder>background</zorder>
@@ -600,6 +613,7 @@
    <zorder>o_image</zorder>
    <zorder>label</zorder>
    <zorder>regresarJ_J</zorder>
+   <zorder>reinicioButton</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
@@ -607,7 +621,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>640</width>
+     <width>655</width>
      <height>21</height>
     </rect>
    </property>
