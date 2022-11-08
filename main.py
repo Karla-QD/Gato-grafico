@@ -179,7 +179,22 @@ class Juego(QMainWindow):
         self.regresarJC.clicked.connect(self.cerrar)
     def cerrar(self):
         self.close()
+    def mejor_movimiento(self):
+        mejor_puntaje = -1000
+        mejor_movimiento = (-1, -1)
+        for i in range(self.matriz_len):
+            for j in range(self.matriz_len):
+                # si la posicion esta vacia revisa si dentro del rango de la matriz tiene al lado una ficha del jugador (x)
 
+                if self.matriz[i][j] == -1: # si la posicion esta vacia revisa si dentro del rango de la matriz tiene al lado una ficha del jugador (x)
+                    if self.matriz[i][j+1] == "x" or self.matriz[i][j-1] == "x" or self.matriz[i+1][j] == "x" or self.matriz[i-1][j] == "x":
+                        self.matriz[i][j] = "o"
+                        puntaje = self.minimax(self.matriz, 0, False)
+                        self.matriz[i][j] = -1
+                        if puntaje > mejor_puntaje:
+                            mejor_puntaje = puntaje
+                        mejor_movimiento = str(i) + str(j)
+        return mejor_movimiento
     def set_modo(self):
         self.modo = self.dificultad.currentIndex()
     def set_turno(self, turno:int):
@@ -236,7 +251,8 @@ class Juego(QMainWindow):
             return ganador
         return ganador
 
-    def botones_jugador(self, valor:str):
+    def botones_jugador(self, valor: str):
+
         if self.modo == 0:
             if self.gana() != "-1":
                 if (self.gana() == "x"):
@@ -412,9 +428,54 @@ class Juego(QMainWindow):
                     self.mensaje.setText("El CPU ganó")
 
                 return
-
+# metodo para cpu contra jugador usando minimax
         if self.modo == 2:
+            # metodo para cpu contra jugador usando minimax
+
+
+
           return
+
+
+    """def minimax(self):
+        x = self.gana()
+        if (x != -1):  # si hay un ganador
+            return self.gana();  # retorna el ganador
+        # definimos la posicion del mejor movimiento en la matriz
+        pos = [-1, -1]
+        # definimos el mejor puntaje
+        # valor del mejor movimiento (-2, 2)
+        value =(-2,-2)
+
+        for i in range(self.matriz_len):
+            for j in range(self.matriz_len):
+                if self.matriz[i][j] == -1:
+                    self.matriz[i][j] = "o"
+                    self.valor = str(i) + str(j)
+                    aux = self.minimax()
+                    # el mejor valor de la matriz es el que tiene el menor valor
+
+                    if aux > value:
+                        value = aux
+                        pos = [i, j]
+                    self.matriz[i][j] = -1
+        # verificamos si no hay movimientos posibles
+        if pos != -1:  # si no hay movimientos posibles
+            return 0
+        # si hay movimientos posibles
+        self.matriz[pos[0]][pos[1]] = "o" # colocamos el movimiento en la matriz
+        self.valor = str(pos[0]) + str(pos[1]) # guardamos el movimiento en la variable valor
+        self.botones_jugador(self.valor) # llamamos a la funcion botones_jugador para que coloque el movimiento en la interfaz
+        # retornamos los  valores del mejor movimiento encontrado en la matriz
+        return value"""
+
+
+
+
+
+
+
+
 
     def resetear(self):
         self.matriz = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]
