@@ -497,7 +497,6 @@ class Juego(QMainWindow):
             if self.gana() != "-1":
                 if (self.gana() == "x"):
                     self.mensaje.setText("El jugador ganó")
-
                 else:
                     self.mensaje.setText("El CPU ganó")
                 return
