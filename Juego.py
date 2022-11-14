@@ -4,11 +4,43 @@ from PyQt5.QtWidgets import QMainWindow, QApplication
 
 
 class Juego(QMainWindow):
+    """
+        Explicacion
+        la clase juego se encarga de manejar la logica del juego, se encarga de verificar si el jugador gano o perdio,
+        todo esto dependiendo del modo de juego que se seleccione, si es facil, medio o dificil.
+        unicamente para el modo de juego jugador vs cpu.
+
+        parametros:
+        QMainWindow: clase de la que hereda la clase principal
+
+        metodos:
+        resetear: reinicia el juego
+        cerrar: cierra la ventana
+        set_modo: cambia el modo de juego  0 = facil, 1 = medio, 2 = dificil
+        set_turno: cambia el turno del jugador
+        print_matriz: imprime la matriz en la consola
+        llamar_valor: retorna el valor de la matriz dependiendo de la posicion
+        botones_jugador: funcion que se encarga de manejar los tipos de juego, facil, medio y dificil
+        interpretar_jugador: funcion que se encarga de interpretar el turno del jugador
+        interpretar_jugador_inverso: funcion que se encarga de interpretar el valor de la matriz
+        verificar_ganador: funcion que se encarga de verificar si el jugador gano o perdio
+        arboles_decision: funcion que se encarga de manejar el arbol de decision para el modo de juego dificil
+        posibilidades: funcion que se encarga de manejar las posibilidades de ganar o perder
+
+        """
+
     def __init__(self):
         super().__init__()
+        """
+        atributos:
+            turno int: variable que se encarga de manejar el turno del jugador, 1 x = jugador 1, 2 = jugador 2 O
+            matriz_len int: variable que se encarga de manejar el tamaño de la matriz, en este caso es 3x3
+            gano bool: variable que se encarga de verificar si un jugador gano o no
+            modo int: variable que se encarga de manejar el modo de juego, 0 = facil, 1 = medio, 2 = dificil
+        """
         # Cargar la configuración del archivo .ui en el objeto
         uic.loadUi("resource/game.ui", self)
-        self.turno: int = 1  # 1 = X, 0 = O
+        self.turno: int = 1
         self.matriz_len: int = 3
         self.gano = False
         self.matriz = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]
@@ -25,13 +57,11 @@ class Juego(QMainWindow):
         self.button_21.clicked.connect(lambda: self.botones_jugador("21"))
         self.button_22.clicked.connect(lambda: self.botones_jugador("22"))
         self.dificultad.currentIndexChanged.connect(self.set_modo)
-        # Conectar los botones de reset y cerrar
         self.regresarJC.clicked.connect(self.cerrar)
         # si se reinicia el juego se reinicia la matriz y el turno y se limpian los botones de la interfaz grafica
         self.reiniciaButton.clicked.connect(self.resetear)
 
 
-    # reinicia el juego
     def resetear(self):
         self.turno = 1
         self.matriz = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]
@@ -50,10 +80,8 @@ class Juego(QMainWindow):
         self.close()
 
     def set_modo(self):
-        # cambia el modo de juego,  0 = facil, 1 = medio, 2 = dificil
         self.modo = self.dificultad.currentIndex()
 
-    # funcion que se encarga de cambiar el turno
     def set_turno(self, turno: int):
         self.turno = turno
 
@@ -65,7 +93,7 @@ class Juego(QMainWindow):
             print()
         print()
 
-     #funcion que imprime si un jugador gano o no
+
     def gana(self) -> str:
         ganador: str = "-1"
         #verifica si hay un ganador en las filas, si sucede cambia el valor de ganador
@@ -125,7 +153,6 @@ class Juego(QMainWindow):
 
     def modificar_matriz(self, i: int, valor: str):
         turno_icon = QtGui.QIcon("resource/o.png")
-        #dependiendo del valor se le asigna un icono a la matriz, en la posicion correspondiente
         if i == 0:
             self.matriz[0][0] = valor
             self.button_00.setIcon(turno_icon)
@@ -184,7 +211,16 @@ class Juego(QMainWindow):
         return aux
 
     def botones_jugador(self, valor: str):
-        #si el modo de juego es facil, se ejecuta la siguiente funcion
+        """
+            Explicacion
+            cuenta con tres distintos niveles de dificultad que es seleccionado por el usuario
+            modo 0 = facil, se ejecutara una funcion que seleccionara un boton aleatorio
+            modo 1 = medio, se ejecutara una funcion donde la maquina se defendera  de las jugadas
+            del jugador
+            modo 2 = dificil, se ejecutara una funcion donde la maquina utilizara arboles de decision
+            para saber cual es la mejor jugada y ejecutarla.
+        """
+
         if self.modo == 0:
             #se verifica si gana el jugador o la maquina
             if self.gana() != "-1":
@@ -200,29 +236,25 @@ class Juego(QMainWindow):
                 pass
             elif self.matriz[int(valor[0])][int(valor[1])] == "x" or self.matriz[int(valor[0])][int(valor[1])] == "o":
                 return
-            #se le asigna el icono correspondiente al jugador
             turno_icon = QtGui.QIcon("resource/x.png")
             turno_letra = "x"
             #si es el turno de la maquina, se ejecuta la siguiente funcion
             if self.turno % 2 == 0:
-                #se le asigna el icono correspondiente a la maquina
                 turno_icon = QtGui.QIcon("resource/o.png")
                 turno_letra = "o"
-                vacio: bool = False  # Easy level starts, fix AI turn, delete this to PVP.
+                vacio: bool = False
                 i: int = -1
                 j: int = -1
-                #mientras no se encuentre un espacio vacio, se ejecuta el siguiente ciclo
                 while not vacio:
                     #se genera un numero aleatorio para i y j
                     i = random.randint(0, 2)
                     j = random.randint(0, 2)
-                    #si el espacio esta vacio, se sale del ciclo y se asigna el valor
                     if self.matriz[i][j] == -1:
                         vacio = True
                 valor = str(i) + str(j)
                 print(f'Estoy jugando en una pos. random: {i},{j}')
 
-            #se asigna el icono correspondiente al boton, seguun el valor de i y j
+
             if (valor == "00"): self.button_00.setIcon(turno_icon)
             if (valor == "01"): self.button_01.setIcon(turno_icon)
             if (valor == "02"): self.button_02.setIcon(turno_icon)
@@ -233,14 +265,13 @@ class Juego(QMainWindow):
             if (valor == "21"): self.button_21.setIcon(turno_icon)
             if (valor == "22"): self.button_22.setIcon(turno_icon)
 
-            #si el turno es 9, se ejecuta la siguiente funcion
+
             if self.turno == 9:
                 for i in range(self.matriz_len):
                     for j in range(self.matriz_len):
                         #se asigna el icono correspondiente a el ultimo espacio disponible
                         if self.matriz[i][j] == -1: self.matriz[i][j] = "x"
                 self.print_matriz()
-                #se muestra el ganador o si es empate
                 if (self.gana() == "x"):
                     self.mensaje.setText("El jugador ganó")
 
@@ -253,7 +284,7 @@ class Juego(QMainWindow):
             self.matriz[int(valor[0])][int(valor[1])] = turno_letra
             self.print_matriz()
             self.turno += 1
-            #si el turno es par, juega la maquina
+
             if self.turno % 2 == 0: self.botones_jugador("AI")
             if self.gana() != "-1":
                 if (self.gana() == "x"):
@@ -263,7 +294,6 @@ class Juego(QMainWindow):
                 return
 
         if self.modo == 1:
-            #se verifica si gana el jugador o la maquina
             if self.gana() != "-1":
                 if (self.gana() == "x"):
                     self.mensaje.setText("El jugador ganó")
@@ -277,12 +307,11 @@ class Juego(QMainWindow):
             elif self.matriz[int(valor[0])][int(valor[1])] == "x" or self.matriz[int(valor[0])][int(valor[1])] == "o":
                 return
 
-            #se le asigna el icono correspondiente al jugador
+
             turno_icon = QtGui.QIcon("resource/x.png")
             turno_letra = "x"
-            #si es el turno de la maquina, se ejecuta la siguiente funcion
+
             if self.turno % 2 == 0:
-                #se le asigna el icono correspondiente a la maquina
                 turno_icon = QtGui.QIcon("resource/o.png")
                 turno_letra = "o"
                 vacio: bool = False
@@ -401,7 +430,7 @@ class Juego(QMainWindow):
                         if self.matriz[i][j] == -1:
                             valor = str(i) + str(j)
                             sigue = True
-            #se setea el icono en la posicion elegida
+
             if (valor == "00"): self.button_00.setIcon(turno_icon)
             if (valor == "01"): self.button_01.setIcon(turno_icon)
             if (valor == "02"): self.button_02.setIcon(turno_icon)
@@ -442,9 +471,7 @@ class Juego(QMainWindow):
 
                 return
 
-        # metodo para cpu contra jugador usando arboles de decision
         if self.modo == 2:
-            #muestra el mensaje de quien gana
             if self.gana() != "-1":
                 if (self.gana() == "x"):
                     self.mensaje.setText("El jugador ganó")
@@ -457,14 +484,13 @@ class Juego(QMainWindow):
                 pass
             elif self.matriz[int(valor[0])][int(valor[1])] == "x" or self.matriz[int(valor[0])][int(valor[1])] == "o":
                 return
-            # se le asigna el icono correspondiente al jugador
+
             turno_icon = QtGui.QIcon("resource/x.png")
             turno_letra = "x"
-            # si el turno es par, juega la maquina
             if self.turno % 2 == 0:
                 #se hace un arbol de decision para elegir la mejor jugada
                 self.jugar_cpu_dificil()
-            #se asigna el icono correspondiente segun valores de i y j
+
             if (valor == "00"): self.button_00.setIcon(turno_icon)
             if (valor == "01"): self.button_01.setIcon(turno_icon)
             if (valor == "02"): self.button_02.setIcon(turno_icon)
@@ -480,7 +506,6 @@ class Juego(QMainWindow):
                     for j in range(self.matriz_len):
                         if self.matriz[i][j] == -1: self.matriz[i][j] = "x"
                 self.print_matriz()
-                #verifica si hay ganador o empate
                 if (self.gana() == "x"):
                     self.mensaje.setText("El jugador ganó")
 
@@ -502,8 +527,13 @@ class Juego(QMainWindow):
                 return
 
 
-     #arbol de decision para elegir la mejor jugada del cpu
     def arboles_decision(self, jugador: int, matriz_aux: []):
+        """
+         Explicacion
+           este metodo crea un arbol de decision para elegir la mejor jugada de la maquina en el modo dificil del juego
+           dejando asi a el jugador con pocas posibilidades de ganar contra la maquina en este modo de juego (dificil),
+           siempre seguira el mismo algoritmo para la toma de decisiones, pero con diferentes valores de profundidad.
+         """
         var = self.posibilidades(matriz_aux)
         if var != 0:
             return var * jugador
@@ -535,7 +565,6 @@ class Juego(QMainWindow):
                     indice = i
         self.modificar_matriz(indice, "o")
 
-    #muestra las posibles jugadas que tendra el cpu
     def posibilidades(self, matriz):
         mat = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
         for i in range(0, 8):
