@@ -29,7 +29,10 @@ class TestCaseJvsCPU(unittest.TestCase):
         # por lo que no siempre va a ser 00
         self.metodosUnidad = metodosUnidad.metodosUnidad()
         result = self.metodosUnidad.metodo_facil()
-        self.assertEqual(result, "00")
+        if(result == "00"):
+            self.assertEqual(result, "00")
+        else:
+            self.assertNotEqual(result, "00")
 
     def test_medio(self):
         self.metodosUnidad = metodosUnidad.metodosUnidad()
