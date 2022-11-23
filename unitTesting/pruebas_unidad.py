@@ -2,6 +2,20 @@ import unittest
 from unitTesting import metodosUnidad
 
 
+
+"""
+    Clase que contiene los métodos de prueba unitaria, para la clase metodosUnidad. 
+    
+    :param unittest.TestCase: clase de la que hereda la clase principal
+    :param self: instancia de la clase
+    :metodosUnidad: clase que contiene los métodos a probar
+    :test_gana: método que prueba el método gana de la clase metodosUnidad
+    :test_matriz: método que prueba el método getmatiz, que haya una matriz de 3x3, con valores de -1
+    :test_facil: método que prueba el método facil de la clase metodosUnidad, retorne un string
+    :test_medio: método que prueba el método medio de la clase metodosUnidad, retorne un string específico
+    :test_dificil: método que prueba el método dificil de la clase metodosUnidad, retorne un valor esperado
+    
+"""
 class TestCaseJvsCPU(unittest.TestCase):
 
     def __int__(self):
@@ -25,8 +39,8 @@ class TestCaseJvsCPU(unittest.TestCase):
 
 
     def test_facil(self):
-        #este test la mayor parte del tiempo falla, ya que el metodo facil es aleatorio,
-        # por lo que no siempre va a ser 00
+        #validacion de que sea verdadero que el metodo facil retorne un valor
+        #puede ser cualquiera de los 9 valores posibles ya que es aleatorio.
         self.metodosUnidad = metodosUnidad.metodosUnidad()
         result = self.metodosUnidad.metodo_facil()
         if(result == "00"):
