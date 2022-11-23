@@ -203,7 +203,6 @@ class Juego(QMainWindow):
         if jug == 0: return "-1"
         return "-1"
 
-
     def interpretar_matriz(self):
         aux = []
         for i in range(self.matriz_len):
@@ -469,6 +468,7 @@ class Juego(QMainWindow):
 
                 else:
                     self.mensaje.setText("El CPU ganó")
+
                 return
 
         if self.modo == 2:

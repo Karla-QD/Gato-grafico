@@ -1,6 +1,5 @@
 import unittest
-import metodosUnidad
-
+from unitTesting import metodosUnidad
 
 
 class TestCaseJvsCPU(unittest.TestCase):
@@ -12,9 +11,6 @@ class TestCaseJvsCPU(unittest.TestCase):
     def test_matriz(self):
         self.metodosUnidad = metodosUnidad.metodosUnidad()
         self.matriz = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]
-        self.matriz[0][0] = -1
-        self.matriz[0][1] = "x"
-        self.matriz[0][2] = "x"
         result = self.metodosUnidad.getmatriz()
         self.assertEqual(result[0][0], self.matriz[0][0])
 
@@ -27,6 +23,7 @@ class TestCaseJvsCPU(unittest.TestCase):
         result = self.metodosUnidad.gana()
         self.assertEqual(result, "x")
 
+
     def test_facil(self):
         self.metodosUnidad = metodosUnidad.metodosUnidad()
         result = self.metodosUnidad.metodo_facil()
@@ -38,6 +35,9 @@ class TestCaseJvsCPU(unittest.TestCase):
         self.metodosUnidad.matriz[0][1] = "x"
         result = self.metodosUnidad.metodo_medio()
         self.assertEqual(result, "02")
+
+
+
 
 
 
