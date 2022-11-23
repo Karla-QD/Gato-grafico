@@ -45,6 +45,10 @@ class Jugador_Jugador(QMainWindow):
     def cerrar(self):
         self.close()
 
+
+    def getmatriz(self):
+        return self.matriz
+
     def resetear(self):
         self.matriz = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]
         self.turno = 1

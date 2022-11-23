@@ -203,6 +203,7 @@ class Juego(QMainWindow):
         if jug == 0: return "-1"
         return "-1"
 
+
     def interpretar_matriz(self):
         aux = []
         for i in range(self.matriz_len):
@@ -220,7 +221,6 @@ class Juego(QMainWindow):
             modo 2 = dificil, se ejecutara una funcion donde la maquina utilizara arboles de decision
             para saber cual es la mejor jugada y ejecutarla.
         """
-
         if self.modo == 0:
             #se verifica si gana el jugador o la maquina
             if self.gana() != "-1":
@@ -441,6 +441,7 @@ class Juego(QMainWindow):
             if (valor == "21"): self.button_21.setIcon(turno_icon)
             if (valor == "22"): self.button_22.setIcon(turno_icon)
 
+
             if self.turno == 9:
                 for i in range(self.matriz_len):
                     for j in range(self.matriz_len):
@@ -468,7 +469,6 @@ class Juego(QMainWindow):
 
                 else:
                     self.mensaje.setText("El CPU ganó")
-
                 return
 
         if self.modo == 2:
@@ -572,6 +572,5 @@ class Juego(QMainWindow):
             if (self.interpretar_jugador(matriz[mat[i][0]]) != 0 and
                     self.interpretar_jugador(matriz[mat[i][0]]) == self.interpretar_jugador(matriz[mat[i][1]]) and
                     self.interpretar_jugador(matriz[mat[i][0]]) == self.interpretar_jugador(matriz[mat[i][2]])):
-                return self.interpretar_jugador(
-                    matriz[mat[i][2]])  # si hay un ganador, se retorna el valor del ganador
+                return self.interpretar_jugador(matriz[mat[i][2]])  # si hay un ganador, se retorna el valor del ganador
         return 0
