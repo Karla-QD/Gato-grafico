@@ -1,10 +1,9 @@
 import random
 
-
 """
     explicacion:
-     la clase metodos de unidad se encarga de realizar las pruebas unitarias de los metodos de la clase principal,
-     los cuales fueron creados para verificar que los metodos de la clase principal funcionen correctamente.
+     la clase metodosUnidad se encarga de realizar las pruebas unitarias de los metodos utilizados en el juego, para 
+     verificar que funcionen correctamente y devuelvan el resultado esperado.
 
     metodos:
         getmatriz: verifica que la matriz se haya inicializado correctamente
@@ -83,7 +82,6 @@ class metodosUnidad():
             vacio = True
         valor = str(i) + str(j)
         return valor
-        print(f'Estoy jugando en una pos. random: {i},{j}')
 
     def metodo_medio(self):
         valor: str = ""
@@ -269,6 +267,37 @@ class metodosUnidad():
                     valor = puntaje
                     indice = i
         self.modificar_matriz(indice, "o")
+        return indice
+
+    def modificar_matriz(self, i: int, valor: str):
+        if i == 0:
+            self.matriz[0][0] = valor
+            return
+        if i == 1:
+            self.matriz[0][1] = valor
+            return
+        if i == 2:
+            self.matriz[0][2] = valor
+            return
+        if i == 3:
+            self.matriz[1][0] = valor
+            return
+        if i == 4:
+            self.matriz[1][1] = valor
+            return
+        if i == 5:
+            self.matriz[1][2] = valor
+            return
+        if i == 6:
+            self.matriz[2][0] = valor
+            return
+        if i == 7:
+            self.matriz[2][1] = valor
+            return
+        if i == 8:
+            self.matriz[2][2] = valor
+            return
+
 
     def posibilidades(self, matriz):
         mat = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
