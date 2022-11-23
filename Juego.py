@@ -325,7 +325,7 @@ class Juego(QMainWindow):
                     vacio = True
                 if ((self.matriz[1][0] == self.matriz[1][1] == "o" and self.matriz[1][2] == -1) or (
                         self.matriz[0][2] == self.matriz[2][2] == "o"
-                        and self.matriz[1][2] == -1)):
+                        and self.matriz[1][2] == -1) ):
                     valor = str(1) + str(2)
                     vacio = True
                 if ((self.matriz[0][0] == self.matriz[1][1] == "o" and self.matriz[2][2] == -1) or (
@@ -341,7 +341,8 @@ class Juego(QMainWindow):
                     vacio = True
                 if ((self.matriz[1][0] == self.matriz[1][2] == "o" and self.matriz[1][1] == -1) or (
                         self.matriz[0][0] == self.matriz[2][2] == "o" and self.matriz[1][1] == -1)
-                        or (self.matriz[0][1] == self.matriz[2][1] == "o" and self.matriz[1][1] == -1)):
+                        or (self.matriz[0][1] == self.matriz[2][1] == "o" and self.matriz[1][1] == -1) or
+                (self.matriz[0][2] == self.matriz[2][0] == "x" and self.matriz[1][1] == -1)):
                     valor = str(1) + str(1)
                     vacio = True
                 if ((self.matriz[0][1] == self.matriz[1][1] == "o" and self.matriz[2][1] == -1) or (
@@ -393,7 +394,8 @@ class Juego(QMainWindow):
                     vacio = True
                 if ((self.matriz[1][0] == self.matriz[1][2] == "x" and self.matriz[1][1] == -1) or (
                         self.matriz[0][0] == self.matriz[2][2] == "x" and self.matriz[1][1] == -1)
-                        or (self.matriz[0][1] == self.matriz[2][1] == "x" and self.matriz[1][1] == -1)):
+                        or (self.matriz[0][1] == self.matriz[2][1] == "x" and self.matriz[1][1] == -1) or
+                 (self.matriz[0][2] == self.matriz[2][0] == "x" and self.matriz[1][1] == -1)):
                     valor = str(1) + str(1)
                     vacio = True
                 if ((self.matriz[0][1] == self.matriz[1][1] == "x" and self.matriz[2][1] == -1) or (
