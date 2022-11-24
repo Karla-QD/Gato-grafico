@@ -1,10 +1,8 @@
 import sys
-import Juego
-import Jugador_Jugador
+import Jugador_vs_cpu
+import Jugador_vs_jugador
 from PyQt5 import uic, QtGui
 from PyQt5.QtWidgets import QMainWindow, QApplication
-
-
 class Principal(QMainWindow):
     """
     Explicacion
@@ -29,7 +27,7 @@ class Principal(QMainWindow):
 
     #se abre la ventana de jugador vs jugador
     def j_vs_j(self):
-        apli = Jugador_Jugador.Jugador_Jugador()
+        apli = Jugador_vs_jugador.Jugador_Jugador()
         apli.show()
         apli.setWindowTitle("Tic-tac-toe")
         apli.setWindowIcon(QtGui.QIcon("resource/tic-tac-toe.png"))
@@ -37,7 +35,7 @@ class Principal(QMainWindow):
 
     #se abre la ventana de jugador vs cpu
     def j_vs_cpu(self):
-        apli = Juego.Juego()
+        apli = Jugador_vs_cpu.Juego()
         apli.show()
         apli.setWindowTitle("Tic-tac-toe")
         apli.setWindowIcon(QtGui.QIcon("resource/tic-tac-toe.png"))

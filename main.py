@@ -7,6 +7,7 @@ if __name__ == "__main__":
 
     """
     inicio de la aplicacion y creacion de la ventana principal de la aplicacion. 
+    Se inicia el juego y se muestra la ventana principal 
     """
     app = QApplication(sys.argv)
     apli = Principal.Principal()
