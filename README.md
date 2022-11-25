@@ -11,10 +11,8 @@
 ### Alisson Steller Alfaro_604820039
 
 ### Referencias:
-### Referencia consultadas para arbol de decisiones:
+
 #### 1) Clederson Cruz. (2020). GitHub - Cledersonbc/tic-tac-toe-minimax: Minimax is a AI algorithm. GitHub. https://github.com/Cledersonbc/tic-tac-toe-minimax
 #### 2)Vineet Joshi. (2018). GitHub - vineetjoshi253/TicTacToe-MiniMax: A python implementation of Tic-Tac-Toe using MiniMax Algorithm. GitHub. https://github.com/vineetjoshi253/TicTacToe-MiniMax
-### Referencia consultada para documentación:
-#### 1) Real Python. (2022, 10 noviembre). Documenting Python Code: A Complete Guide. https://realpython.com/documenting-python-code/
-### Referencia consultada para pruebas de unidad:
-#### 1)
+#### 3) Real Python. (2022, 10 noviembre). Documenting Python Code: A Complete Guide. https://realpython.com/documenting-python-code/
+#### 4)Schafer, C. (2017, 16 agosto). Python Tutorial: Unit Testing Your Code with the unittest Module [Vídeo]. YouTube. https://www.youtube.com/watch?v=6tNS--WetLI&feature=youtu.be
