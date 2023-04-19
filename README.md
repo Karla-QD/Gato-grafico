@@ -1,14 +1,13 @@
-# Proyecto_ll_datos
+# GATO MODO GRAFICO 
 ### Segundo proyecto de estructuras de datos, ll ciclo 2022.
 ### Fecha de entrega: 27 de Noviembre 2022.
 
 ### Profesor: Jose Calvo Suárez.
 
-###  Integrantes:
 
 ### Karla Verónica Quirós Delgado_ 604650870
 
-### Alisson Steller Alfaro_604820039
+
 
 ### Referencias:
 
