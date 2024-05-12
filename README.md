@@ -5,7 +5,7 @@
 ### Profesor: Jose Calvo Suárez.
 
 
-### Karla Verónica Quirós Delgado_ 604650870
+### Karla Verónica Quirós Delgado
 
 Este proyecto fue desarrollado utilizando PyQt5 con Python, así como interesantes algoritmos con árboles de decisión.
 
