@@ -16,7 +16,7 @@ Características principales:
 - Algoritmo de la CPU con distintos niveles de dificultad, desde movimientos aleatorios hasta decisiones basadas en árboles de decisión.
 - Uso de imágenes e iconos para representar los movimientos de los jugadores y mejorar la estética de la interfaz.
 - Código estructurado y documentado para facilitar su comprensión y mantenimiento.
-Este proyecto muestra la capacidad de trabajar con tecnologías como PyQt5 y desarrollar soluciones inteligentes utilizando algoritmos de inteligencia artificial en juegos.
+Este proyecto muestra la capacidad de trabajar con tecnologías como PyQt5 y desarrollar soluciones inteligentes.
 
 ### Referencias:
 
