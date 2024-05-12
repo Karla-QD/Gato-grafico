@@ -1,4 +1,4 @@
-# GATO MODO GRAFICO 
+# GATO MODO GRÁFICO 
 ### Segundo proyecto de estructuras de datos, ll ciclo 2022.
 ### Fecha de entrega: 27 de Noviembre 2022.
 
