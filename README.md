@@ -7,7 +7,16 @@
 
 ### Karla Verónica Quirós Delgado_ 604650870
 
+Este proyecto fue desarrollado utilizando PyQt5 con Python, utilizando interesantes algoritmos como árboles de decisión.
 
+Características principales:
+
+- Interfaz gráfica desarrollada con PyQt5 para una experiencia de usuario intuitiva.
+- Implementación de la lógica del juego de Tres en Raya (Tic-Tac-Toe) con verificación de ganadores y actualización de la matriz de juego.
+- Algoritmo de la CPU con distintos niveles de dificultad, desde movimientos aleatorios hasta decisiones basadas en árboles de decisión.
+- Uso de imágenes e iconos para representar los movimientos de los jugadores y mejorar la estética de la interfaz.
+- Código estructurado y documentado para facilitar su comprensión y mantenimiento.
+Este proyecto muestra la capacidad de trabajar con tecnologías como PyQt5 y desarrollar soluciones inteligentes utilizando algoritmos de inteligencia artificial en juegos.
 
 ### Referencias:
 
