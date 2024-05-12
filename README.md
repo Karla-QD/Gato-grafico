@@ -7,7 +7,7 @@
 
 ### Karla Verónica Quirós Delgado_ 604650870
 
-Este proyecto fue desarrollado utilizando PyQt5 con Python, utilizando interesantes algoritmos como árboles de decisión.
+Este proyecto fue desarrollado utilizando PyQt5 con Python, así como interesantes algoritmos con árboles de decisión.
 
 Características principales:
 
